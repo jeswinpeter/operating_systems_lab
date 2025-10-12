@@ -44,9 +44,8 @@ void main() {
 				else{
 					time += Remain_time[i];
 					Remain_time[i] = 0;
-					wait_t[i] = time - b_time[i];
+					TAT[i] = time;
 				}
-				
 			}
 		}
 	}
@@ -54,7 +53,7 @@ void main() {
 	gant_time[index] = time;
 
 	for(int i = 0; i < n_proce; i++) {
-		TAT[i] = wait_t[i] - b_time[i];
+		wait_t[i] = TAT[i] - b_time[i];
 		avg_tat += TAT[i];
 		avg_wt += wait_t[i]; 
 	}
@@ -63,7 +62,7 @@ void main() {
 		printf("\n P[%d]\t%d\t%d\t%d\t",i + 1, b_time[i], wait_t[i], TAT[i]);
 	}
 
-	printf("\nGantt Chart\n");
+	printf("\n\nGantt Chart\n");
 	for(int i = 0; i < index; i++) {
 		printf(" ------ ");
 	}
@@ -80,5 +79,8 @@ void main() {
 	for(int i = 0; i <= index; i++) {
 		printf("%d\t",gant_time[i]);
 	}
-	printf("\n");
+	printf("\n\n");
+
+	printf("Average waiting time: %d\n",avg_wt);
+	printf("Average turn aroud time: %d",avg_tat);
 }
